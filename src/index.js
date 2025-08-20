@@ -2,7 +2,8 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import pool from "./config/db.js";
-import authRoute from "./routes/auth.route.js";
+import authRoute from "./routes/user.route.js";
+import deviceRoute from "./routes/device.route.js";
 import createTables from "./data/createTable.js";
 
 dotenv.config();
@@ -12,6 +13,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/v1/auth", authRoute);
+app.use("/v1/device", deviceRoute);
 
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;
