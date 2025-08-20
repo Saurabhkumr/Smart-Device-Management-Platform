@@ -5,13 +5,14 @@ import pool from "./config/db.js";
 import authRoute from "./routes/user.route.js";
 import deviceRoute from "./routes/device.route.js";
 import createTables from "./data/createTable.js";
+import { deviceRateLimiter } from "./middlewares/rateLimit.js";
 
 dotenv.config();
 const port = process.env.PORT || 5000;
 const app = express();
 app.use(cors());
 app.use(express.json());
-
+app.use(deviceRateLimiter);
 app.use("/v1/auth", authRoute);
 app.use("/v1/device", deviceRoute);
 
