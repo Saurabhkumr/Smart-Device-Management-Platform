@@ -1,5 +1,4 @@
 import express from "express";
-import { verifyToken } from "../middlewares/verifyUser.js";
 import {
   registerDevice,
   listDevices,
@@ -14,18 +13,24 @@ import {
   getAggregatedUsageController,
 } from "../controllers/logs.controller.js";
 
+import {
+  registerDeviceSchema,
+  updateDeviceSchema,
+} from "../schema/device.schema.js";
+import { validateBody } from "../middlewares/validate.js";
+
 const router = express.Router();
 
-router.post("/", verifyToken, registerDevice);
-router.get("/", verifyToken, listDevices);
-router.patch("/:id", verifyToken, updateDevice);
-router.delete("/:id", verifyToken, deleteDevice);
-router.post("/:id/heartbeat", verifyToken, heartbeatDevice);
+router.post("/", validateBody(registerDeviceSchema), registerDevice);
+router.get("/", listDevices);
+router.patch("/:id", validateBody(updateDeviceSchema), updateDevice);
+router.delete("/:id", deleteDevice);
+router.post("/:id/heartbeat", heartbeatDevice);
 
 //Data & Analytics
 
-router.post("/:id/logs", verifyToken, createLogController);
-router.get("/:id/logs", verifyToken, getLastLogsController);
-router.get("/:id/usage", verifyToken, getAggregatedUsageController);
+router.post("/:id/logs", createLogController);
+router.get("/:id/logs", getLastLogsController);
+router.get("/:id/usage", getAggregatedUsageController);
 
 export default router;
