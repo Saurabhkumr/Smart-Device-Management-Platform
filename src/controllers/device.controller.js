@@ -3,6 +3,7 @@ import {
   listDevicesService,
   updateDeviceService,
   deleteDeviceService,
+  heartbeatDeviceService
 } from "../services/device.service.js";
 
 // Register new device
@@ -40,6 +41,15 @@ export const deleteDevice = async (req, res) => {
   try {
     await deleteDeviceService(req.params.id);
     res.json({ success: true, message: "Device deleted" });
+  } catch (err) {
+    res.status(500).json({ success: false, message: err.message });
+  }
+};
+
+export const heartbeatDevice = async (req, res) => {
+  try {
+    const result = await heartbeatDeviceService(req.params.id, req.body.status);
+    res.json({ success: true, message: "Device heartbeat recorded", ...result });
   } catch (err) {
     res.status(500).json({ success: false, message: err.message });
   }

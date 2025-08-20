@@ -3,15 +3,17 @@ import { verifyToken } from "../middlewares/verifyUser.js";
 import {
   registerDevice,
   listDevices,
-  updateDevice
+  updateDevice,
+  deleteDevice,
+  heartbeatDevice,
 } from "../controllers/device.controller.js";
 
 const router = express.Router();
 
 router.post("/", verifyToken, registerDevice);
 router.get("/", verifyToken, listDevices);
-router.put("/:id", verifyToken, updateDevice);
-// router.delete("/:id", deleteDevice);
-// router.post("/:id/heartbeat", heartbeatDevice);
+router.patch("/:id", verifyToken, updateDevice);
+router.delete("/:id", verifyToken, deleteDevice);
+router.post("/:id/heartbeat", verifyToken, heartbeatDevice);
 
 export default router;

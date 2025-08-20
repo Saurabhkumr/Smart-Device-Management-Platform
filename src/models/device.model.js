@@ -31,18 +31,45 @@ export const fetchDevices = async ({ type, status }) => {
 };
 
 // Update device
-export const updateDeviceById = async (id, { name, type, status }) => {
+
+export const updateDeviceById = async (id, updates) => {
+  const keys = Object.keys(updates);
+  if (keys.length === 0) throw new Error("No fields provided to update");
+
+  const fields = keys.map((key, index) => `${key} = $${index + 1}`);
+  const values = Object.values(updates);
+
+  // Add id as the last parameter
+  values.push(id);
   const query = `
     UPDATE devices
-    SET name = $2,type=$3, status = $4
-    WHERE id = $1
+    SET ${fields.join(", ")}
+    WHERE id = $${values.length}
     RETURNING *;
   `;
-  const result = await pool.query(query, [id, name, type, status]);
+
+  const result = await pool.query(query, values);
   return result.rows[0];
 };
 
 // Delete device
 export const deleteDeviceById = async (id) => {
   await pool.query("DELETE FROM devices WHERE id = $1", [id]);
+};
+export const updateHeartbeat = async (id, status) => {
+  const query = `
+    UPDATE devices
+    SET status = $2,
+        last_active_at = NOW()
+    WHERE id = $1
+    RETURNING last_active_at;
+  `;
+
+  const result = await pool.query(query, [id, status]);
+
+  if (result.rowCount === 0) {
+    throw new Error("Device not found");
+  }
+
+  return { last_active_at: result.rows[0].last_active_at };
 };
