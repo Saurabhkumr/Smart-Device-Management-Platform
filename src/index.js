@@ -6,15 +6,17 @@ import authRoute from "./routes/user.route.js";
 import deviceRoute from "./routes/device.route.js";
 import createTables from "./data/createTable.js";
 import { deviceRateLimiter } from "./middlewares/rateLimit.js";
+import { verifyToken } from "./middlewares/verifyUser.js";
+import { scheduleDeviceDeactivation } from "./jobs/deactivateDevice.js";
 
 dotenv.config();
 const port = process.env.PORT || 5000;
 const app = express();
 app.use(cors());
 app.use(express.json());
-app.use(deviceRateLimiter);
-app.use("/v1/auth", authRoute);
-app.use("/v1/device", deviceRoute);
+
+app.use("/v1/auth", deviceRateLimiter, authRoute);
+app.use("/v1/device", verifyToken, deviceRateLimiter, deviceRoute);
 
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;
@@ -28,11 +30,13 @@ app.use((err, req, res, next) => {
 
 createTables();
 
+app.listen(port, () => {
+  console.log("server is running on port : ", port);
+});
+
+scheduleDeviceDeactivation();
+
 app.get("/", async (req, res) => {
   const result = await pool.query("SELECT current_database()");
   res.send(`The database name is : ${result.rows[0].current_database}`);
-});
-
-app.listen(port, () => {
-  console.log("server is running on port : ", port);
 });
