@@ -52,7 +52,7 @@ JWT_SECRET=your_jwt_secret
 npm start
 ```
 
-The application will be running on `http://localhost:3000`.
+The application will be running on `http://localhost:5000`.
 
 ## 🧪 API Endpoints
 
@@ -88,6 +88,6 @@ docker build -t smart-device-management .
 2. Run the application:
 
 ```bash
-docker run -p 3000:3000 --env-file .env smart-device-management
+docker run -p 5000:5000 --env-file .env smart-device-management
 ```
 
