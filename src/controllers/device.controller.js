@@ -16,7 +16,7 @@ export const registerDevice = async (req, res) => {
   }
 };
 
-// List devices (with filters)
+// List devices
 export const listDevices = async (req, res) => {
   try {
     const devices = await listDevicesService(req.query);
@@ -46,6 +46,7 @@ export const deleteDevice = async (req, res) => {
   }
 };
 
+// Heartbeat device
 export const heartbeatDevice = async (req, res) => {
   try {
     const result = await heartbeatDeviceService(req.params.id, req.body.status);
