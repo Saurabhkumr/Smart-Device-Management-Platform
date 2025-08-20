@@ -75,6 +75,16 @@ The application will be running on `http://localhost:5000`.
 * `GET /devices/:id/logs`: Fetch device logs (supports pagination).
 * `GET /devices/:id/usage`: Fetch aggregated device usage data.
 
+## 📝 Postman Collection
+
+A Postman collection with all API endpoints is available in the repo for testing:
+
+```
+/postman/Smart-Device-Management.postman_collection.json
+```
+
+You can import it in Postman via `File → Import → Choose Files`.
+
 ## 🛠️ Running with Docker
 
 To run the application using Docker:
@@ -90,4 +100,3 @@ docker build -t smart-device-management .
 ```bash
 docker run -p 5000:5000 --env-file .env smart-device-management
 ```
-
