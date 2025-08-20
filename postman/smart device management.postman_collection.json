@@ -1,0 +1,426 @@
+{
+	"info": {
+		"_postman_id": "65258f5c-c9b1-4fc9-9cae-4bc908d4790e",
+		"name": "smart device management",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34224055"
+	},
+	"item": [
+		{
+			"name": "signup",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"John Doe\",\r\n  \"email\": \"john@example.com\",\r\n  \"password\": \"SecurePass123\",\r\n  \"role\": \"user\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/v1/auth/signup",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"v1",
+						"auth",
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "signin",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"john@example.com\",\r\n  \"password\": \"SecurePass123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/v1/auth/signin",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"v1",
+						"auth",
+						"signin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "register device",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjM4Zjg0MmE3LTAzM2EtNGI3Mi05NzJjLWMxMWIyYmQ5ZGE2NCIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzU1Njk5MjU3LCJleHAiOjE3NTU3MDI4NTd9.e9duBPGt4ah1jjWHfwGWKqDDrTd6Tdre6VTTgE77uTA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjM4Zjg0MmE3LTAzM2EtNGI3Mi05NzJjLWMxMWIyYmQ5ZGE2NCIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzU1NjgyMjg1LCJleHAiOjE3NTU2ODU4ODV9.43GYmdrWMvaxFibsrC7mGe1tCkgb-zkyhypA7YdU5SA",
+						"name": "authorization",
+						"type": "text"
+					},
+					{
+						"key": "Cookie",
+						"value": "access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2OWRlZjg0ZTdiYTg1OTY4NDU4Y2VhNCIsImlhdCI6MTcyMTYyODI2Mn0.Gnv5H6UmjbOn6ATlnYEraEVsLNOjMxjDTr_XHGLv_OU",
+						"name": "cookie",
+						"type": "text"
+					},
+					{
+						"key": "Cache-Control",
+						"value": "no-cache",
+						"name": "cache-control",
+						"type": "text"
+					},
+					{
+						"key": "Postman-Token",
+						"value": "<calculated when request is sent>",
+						"name": "postman-token",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"name": "content-type",
+						"type": "text"
+					},
+					{
+						"key": "Content-Length",
+						"value": "<calculated when request is sent>",
+						"name": "content-length",
+						"type": "text"
+					},
+					{
+						"key": "Host",
+						"value": "<calculated when request is sent>",
+						"name": "host",
+						"type": "text"
+					},
+					{
+						"key": "User-Agent",
+						"value": "PostmanRuntime/7.39.1",
+						"name": "user-agent",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "*/*",
+						"name": "accept",
+						"type": "text"
+					},
+					{
+						"key": "Accept-Encoding",
+						"value": "gzip, deflate, br",
+						"name": "accept-encoding",
+						"type": "text"
+					},
+					{
+						"key": "Connection",
+						"value": "keep-alive",
+						"name": "connection",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"device22\",\r\n  \"type\": \"smart watch\",\r\n  \"status\": \"active\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/v1/device",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"v1",
+						"device"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all device",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjM4Zjg0MmE3LTAzM2EtNGI3Mi05NzJjLWMxMWIyYmQ5ZGE2NCIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzU1NjgyMjg1LCJleHAiOjE3NTU2ODU4ODV9.43GYmdrWMvaxFibsrC7mGe1tCkgb-zkyhypA7YdU5SA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/v1/device",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"v1",
+						"device"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update device",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjM4Zjg0MmE3LTAzM2EtNGI3Mi05NzJjLWMxMWIyYmQ5ZGE2NCIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzU1Njg4NDI4LCJleHAiOjE3NTU2OTIwMjh9.ZavFcic11s8k6utmJ34jn4viiTNZo6iEMMdO1JMVyz4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"type\": \"sensor\",\r\n  \"status\": \"active\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/v1/device/a7e018b9-6463-4142-9249-71a7d9b0407a",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"v1",
+						"device",
+						"a7e018b9-6463-4142-9249-71a7d9b0407a"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete device",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjM4Zjg0MmE3LTAzM2EtNGI3Mi05NzJjLWMxMWIyYmQ5ZGE2NCIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzU1Njg3Nzg4LCJleHAiOjE3NTU2OTEzODh9.XpJwFla1cmDgdfbFg0mfcy_mOMHt44o8SGltljZRchA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/v1/device/56d30eec-c193-4705-87ec-8c178eca31b8",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"v1",
+						"device",
+						"56d30eec-c193-4705-87ec-8c178eca31b8"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "heartbeat",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "create log",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjM4Zjg0MmE3LTAzM2EtNGI3Mi05NzJjLWMxMWIyYmQ5ZGE2NCIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzU1NjgyMjg1LCJleHAiOjE3NTU2ODU4ODV9.43GYmdrWMvaxFibsrC7mGe1tCkgb-zkyhypA7YdU5SA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"event\": \"units_consumed\",\r\n  \"value\": 2.5\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/v1/device/a7e018b9-6463-4142-9249-71a7d9b0407a/logs",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"v1",
+						"device",
+						"a7e018b9-6463-4142-9249-71a7d9b0407a",
+						"logs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get logs",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjM4Zjg0MmE3LTAzM2EtNGI3Mi05NzJjLWMxMWIyYmQ5ZGE2NCIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzU1Njg5Njg0LCJleHAiOjE3NTU2OTMyODR9.xLAnq3qFFI1UGG2KBDiPDPPPPFUrHpN3GN1_Seh_5kk",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/v1/device/a7e018b9-6463-4142-9249-71a7d9b0407a/logs?limit=10",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"v1",
+						"device",
+						"a7e018b9-6463-4142-9249-71a7d9b0407a",
+						"logs"
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "aggregate usage",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjM4Zjg0MmE3LTAzM2EtNGI3Mi05NzJjLWMxMWIyYmQ5ZGE2NCIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzU1Njg5Njg0LCJleHAiOjE3NTU2OTMyODR9.xLAnq3qFFI1UGG2KBDiPDPPPPFUrHpN3GN1_Seh_5kk",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/v1/device/a7e018b9-6463-4142-9249-71a7d9b0407a/logs?limit=10",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"v1",
+						"device",
+						"a7e018b9-6463-4142-9249-71a7d9b0407a",
+						"logs"
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
